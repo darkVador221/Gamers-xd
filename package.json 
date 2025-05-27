@@ -22,6 +22,10 @@
     "pm2": "^5.4.0",
     "async-mutex": "0.4.1"
   },
+  "optionalDependencies": {
+    "bufferutil": "^4.0.7",
+    "utf-8-validate": "^5.0.10"
+  },
   "engines": {
     "node": ">=18.x"
   }
