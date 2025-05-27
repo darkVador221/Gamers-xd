@@ -1,15 +1,13 @@
-FROM node:lts-buster
+FROM node:18-alpine
 
-RUN apt-get update && \
-  apt-get install -y ffmpeg imagemagick webp && \
-  apt-get upgrade -y && \
-  rm -rf /var/lib/apt/lists/*
+# Install system dependencies
+RUN apk add --no-cache ffmpeg imagemagick
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY package.json .
+COPY package*.json ./
 
-RUN npm install && npm install -g qrcode-terminal pm2
+RUN npm install --production
 
 COPY . .
 
