@@ -1,24 +1,32 @@
 const express = require('express');
 const app = express();
-const __path = process.cwd();
+const path = require('path');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 8000;
 
-// Middlewares
+// Configuration des middlewares
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Routes
+// Routes dynamiques
 app.use('/server', require('./qr'));
 app.use('/code', require('./pair'));
 
-// Serve static files
-app.get('/pair', (req, res) => res.sendFile(__path + '/pair.html'));
-app.get('/qr', (req, res) => res.sendFile(__path + '/qr.html'));
-app.get('/', (req, res) => res.sendFile(__path + '/main.html'));
+// Fichiers statiques avec gestion d'erreur
+const serveStatic = (file) => (req, res) => {
+  try {
+    res.sendFile(path.join(__dirname, file));
+  } catch (error) {
+    res.status(500).send('Error loading page');
+  }
+};
+
+app.get('/pair', serveStatic('pair.html'));
+app.get('/qr', serveStatic('qr.html'));
+app.get('/', serveStatic('main.html'));
 
 app.listen(PORT, () => {
-  console.log(`✅ Server running on port: ${PORT}`);
+  console.log(`🚀 Server ready on port ${PORT}`);
 });
 
 module.exports = app;
