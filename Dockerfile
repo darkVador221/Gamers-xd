@@ -1,13 +1,20 @@
-FROM node:18-alpine
+FROM node:20-alpine
 
-# Install system dependencies
-RUN apk add --no-cache ffmpeg imagemagick
+# Ajout des outils système requis
+RUN apk add --no-cache --update \
+    ffmpeg \
+    imagemagick \
+    build-base \
+    python3 \
+    make \
+    g++
 
 WORKDIR /app
 
+# Installation sécurisée des dépendances
 COPY package*.json ./
-
-RUN npm install --production
+RUN npm config set unsafe-perm true && \
+    npm install --production --legacy-peer-deps
 
 COPY . .
 
