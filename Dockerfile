@@ -1,23 +1,18 @@
-FROM node:20-alpine
+FROM node:lts-buster
 
-# Ajout des outils système requis
-RUN apk add --no-cache --update \
-    ffmpeg \
-    imagemagick \
-    build-base \
-    python3 \
-    make \
-    g++
+RUN apt-get update && \
+    apt-get install -y ffmpeg imagemagick webp && \
+    apt-get upgrade -y && \
+    rm -rf /var/lib/apt/lists/*
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-# Installation sécurisée des dépendances
-COPY package*.json ./
-RUN npm config set unsafe-perm true && \
-    npm install --production --legacy-peer-deps
+COPY package.json ./
+
+RUN npm install && npm install -g pm2
 
 COPY . .
 
-EXPOSE 8000
+EXPOSE 5000
 
 CMD ["npm", "start"]
