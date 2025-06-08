@@ -1,32 +1,29 @@
 const express = require('express');
 const app = express();
-const path = require('path');
+__path = process.cwd()
 const bodyParser = require("body-parser");
-const PORT = process.env.PORT || 5000;
-
+const PORT = process.env.PORT || 8000;
+let server = require('./qr'),
+    code = require('./pair');
 require('events').EventEmitter.defaultMaxListeners = 500;
-
-// Middlewares
+app.use('/server', server);
+app.use('/code', code);
+app.use('/pair',async (req, res, next) => {
+res.sendFile(__path + '/pair.html')
+})
+app.use('/qr',async (req, res, next) => {
+res.sendFile(__path + '/qr.html')
+})
+app.use('/',async (req, res, next) => {
+res.sendFile(__path + '/main.html')
+})
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// API routes
-app.use('/server', require('./qr'));
-app.use('/code', require('./pair'));
-
-// Static HTML files
-app.use('/pair', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'pair.html'));
-});
-app.use('/qr', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'qr.html'));
-});
-app.use('/', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'main.html'));
-});
-
 app.listen(PORT, () => {
-  console.log(` Don't Forget To Give Star GAMER-XMD\nServer running on http://localhost:${PORT}`);
-});
+    console.log(`
+Don't Forget To Give Star DAMON-MD
 
-module.exports = app;
+ Server running on http://localhost:` + PORT)
+})
+
+module.exports = app
