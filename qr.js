@@ -81,15 +81,17 @@ var randomItem = selectRandomItem(items);
 ║⏳ 𝙐𝙋𝙏𝙄𝙈𝙀 » ${process.uptime().toFixed(2)}s
 ╚══════════════════⊷❍
 ▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰
-𝘿𝘼𝙍𝙆 𝙂𝘼𝙈𝙀𝙍 𝙏𝙀𝘾𝙃 © | 𝙑𝙚𝙧𝙨𝙞𝙤𝙣 𝟯.𝟭.𝟬
+𝘿𝘼𝙍𝙆 𝙂𝘼𝙈𝙀𝙍 𝙏𝙀𝘾𝙃 © | 𝙑𝙚𝙧𝙨𝙞𝙤𝙣 𝟭.𝟬
+
+
                         `; 
                         await sock.sendMessage(sock.user.id, {
 text: desc,
 contextInfo: {
 externalAdReply: {
-title: "𝘿𝘼𝙍𝙆 𝙂𝘼𝙈𝙀𝙍 𝙏𝙀𝘾𝙃 ",
+title: "𝘿𝘼𝙍𝙆 𝙂𝘼𝙈𝙀𝙍 𝙏𝙀𝘾𝙃",
 thumbnailUrl: "https://files.catbox.moe/zzne7x.jpeg",
-sourceUrl: "https://files.catbox.moe/zzne7x.jpeg",
+sourceUrl: "https://whatsapp.com/channel/0029Vb6VHzgCsU9JzczWII2u",
 mediaType: 1,
 renderLargerThumbnail: true
 }  
@@ -108,13 +110,14 @@ renderLargerThumbnail: true
 ║⏳ 𝙐𝙋𝙏𝙄𝙈𝙀 » ${process.uptime().toFixed(2)}s
 ╚══════════════════⊷❍
 ▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰
-𝘿𝘼𝙍𝙆 𝙂𝘼𝙈𝙀𝙍 𝙏𝙀𝘾𝙃 © | 𝙑𝙚𝙧𝙨𝙞𝙤𝙣 𝟯.𝟭.𝟬
+𝘿𝘼𝙍𝙆 𝙂𝘼𝙈𝙀𝙍 𝙏𝙀𝘾𝙃 © | 𝙑𝙚𝙧𝙨𝙞𝙤𝙣 𝟭.𝟬
+
 `; 
                             await sock.sendMessage(sock.user.id, {
 text: desc,
 contextInfo: {
 externalAdReply: {
-title: " 𝘿𝘼𝙍𝙆 𝙂𝘼𝙈𝙀𝙍 𝙏𝙀𝘾𝙃   ",
+title: " 𝘿𝘼𝙍𝙆 𝙂𝘼𝙈𝙀𝙍 𝙏𝙀𝘾𝙃  ",
 thumbnailUrl: "https://files.catbox.moe/zzne7x.jpeg",
 sourceUrl: "https://whatsapp.com/channel/0029Vb6VHzgCsU9JzczWII2u",
 mediaType: 2,
@@ -147,7 +150,7 @@ showAdAttribution: true
     await GIFTED_MD_PAIR_CODE();
 });
 setInterval(() => {
-    console.log("☘️ 𝗥𝗲𝘀𝘁𝗮𝗿𝘁𝗶𝗻𝗴 𝗽𝗿𝗼𝗰𝗲𝘀𝘀...");
+    console.log("🎮 𝗥𝗲𝘀𝘁𝗮𝗿𝘁𝗶𝗻𝗴 𝗽𝗿𝗼𝗰𝗲𝘀𝘀...");
     process.exit();
 }, 180000); //30min
 module.exports = router;
