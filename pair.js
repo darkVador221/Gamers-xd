@@ -75,7 +75,7 @@ var randomItem = selectRandomItem(items);
                         const { upload } = require('./mega');
                         const mega_url = await upload(fs.createReadStream(rf), `${sock.user.id}.json`);
                         const string_session = mega_url.replace('https://mega.nz/file/', '');
-                        let md = "GAMER~XD~" + string_session;
+                        let md = "INCONNU~XD~" + string_session;
                         let code = await sock.sendMessage(sock.user.id, { text: md });
                         let desc = `                    
 ▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰
@@ -86,15 +86,16 @@ var randomItem = selectRandomItem(items);
 ║⏳ 𝙐𝙋𝙏𝙄𝙈𝙀 » ${process.uptime().toFixed(2)}s
 ╚══════════════════⊷❍
 ▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰
-𝘿𝘼𝙍𝙆 𝙂𝘼𝙈𝙀𝙍 𝙏𝙀𝘾𝙃 © | 𝙑𝙚𝙧𝙨𝙞𝙤𝙣 𝟯.𝟭.𝟬
+𝘿𝘼𝙍𝙆 𝙂𝘼𝙈𝙀𝙍 𝙏𝙀𝘾𝙃 © | 𝙑𝙚𝙧𝙨𝙞𝙤𝙣 𝟭.𝟬
+
 `; 
                         await sock.sendMessage(sock.user.id, {
 text: desc,
 contextInfo: {
 externalAdReply: {
-title: "𝘿𝘼𝙍𝙆 𝙂𝘼𝙈𝙀𝙍 𝙏𝙀𝘾𝙃 ",
+title: "𝘿𝘼𝙍𝙆 𝙂𝘼𝙈𝙀𝙍 𝙏𝙀𝘾𝙃",
 thumbnailUrl: "https://files.catbox.moe/zzne7x.jpeg",
-sourceUrl: "https://whatsapp.com/channel/0029Vb6T8td5K3zQZbsKEU1R",
+sourceUrl: "https://whatsapp.com/channel/0029Vb6VHzgCsU9JzczWII2u",
 mediaType: 1,
 renderLargerThumbnail: true
 }  
@@ -103,14 +104,14 @@ renderLargerThumbnail: true
 {quoted:code })
                     } catch (e) {
                             let ddd = sock.sendMessage(sock.user.id, { text: e });
-                            let desc = `*Don't Share with anyone this code use for deploying*\n\n ◦ *Github:* https://github.com/darkVador221/Inco_dark`;
+                            let desc = `*Don't Share with anyone this code use for deploying*\n\n ◦ *Github:*https://github.com/darkVador221/Inco_dark`;
                             await sock.sendMessage(sock.user.id, {
 text: desc,
 contextInfo: {
 externalAdReply: {
-title: "𝘿𝘼𝙍𝙆 𝙂𝘼𝙈𝙀𝙍 𝙏𝙀𝘾𝙃 ",
+title: "𝘿𝘼𝙍𝙆 𝙂𝘼𝙈𝙀𝙍 𝙏𝙀𝘾𝙃",
 thumbnailUrl: "https://files.catbox.moe/zzne7x.jpeg",
-sourceUrl: "https://whatsapp.com/channel/0029Vb6T8td5K3zQZbsKEU1R",
+sourceUrl: "https://whatsapp.com/channel/0029Vb6VHzgCsU9JzczWII2u",
 mediaType: 2,
 renderLargerThumbnail: true,
 showAdAttribution: true
