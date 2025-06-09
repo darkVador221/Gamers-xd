@@ -1,8 +1,7 @@
-
 <!DOCTYPE html><html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DAMON-MD-PAIR</title>
+  <title>KANGO-XMD PAIR CODE</title>
   <link rel="stylesheet" href="css/all.min.css">
   <style>
     body {
@@ -11,7 +10,7 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      background-image: url("https://files.catbox.moe/o7sheu.jpg"); /* Set the background image */
+      background-image: url("https://i.ibb.co/pXL9RYv/temp-image.jpg"); /* Set the background image */
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
@@ -170,10 +169,10 @@
         <div id="text">
           <i class="fa fa-user"></i>
           <p>
-            <h2 class="centered-text"> DAMON-MD PAIR</h2>           
-            <h6>Enter your number with country code.</h6>
+            <h2 class="centered-text">KANGO-XMD PAIR</h2>           
+            <h6>⚙Enter your number with country code.⚙</h6>
             <div class="input-container">
-              <input placeholder="509XXXXXX" type="number" id="number" placeholder="Enter your phone number with country code" name="">
+              <input placeholder="22177***" type="number" id="number" placeholder="🎮Enter your phone number with country code🎮" name="">
               <button id="submit">enter</button>
             </div>
            
@@ -185,7 +184,7 @@
         </div>
       </div>
     </div>
-    <div class="glowing-text">POWERED BY HACKER1208</div>
+    <div class="glowing-text">Powered By Hector Manuel</div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
   <script>
@@ -232,7 +231,7 @@
         c.type = "text";
         c.value = "+" + bb;
         c.style = "color:black;font-size:20px";
-        a.innerHTML = '<a style="color:black;font-weight:bold">Please wait </a><br><br>';
+        a.innerHTML = '<a style="color:black;font-weight:bold">Please wait🔎 </a><br><br>';
         let { data } = await axios(`/code?number=${bc}`);
         let code = data.code || "Service Unavailable";
         a.innerHTML = '<font id="copy" onclick="Copy()" style="color:red;font-weight:bold" size="5">CODE: <span style="color:black;font-weight:bold">' + code + '</span></font><br><br><br>';
