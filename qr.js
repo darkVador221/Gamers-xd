@@ -1,17 +1,10 @@
 const { makeid } = require('./gen-id');
 const express = require('express');
-const QRCode = require('qrcode');
 const fs = require('fs');
 let router = express.Router();
 const pino = require("pino");
-const {
-    default: makeWASocket,
-    useMultiFileAuthState,
-    delay,
-    makeCacheableSignalKeyStore,
-    Browsers,
-    jidNormalizedUser
-} = require("@whiskeysockets/baileys");
+const { default: makeWASocket, useMultiFileAuthState, delay, Browsers, makeCacheableSignalKeyStore, getAggregateVotesInPollMessage, DisconnectReason, WA_DEFAULT_EPHEMERAL, jidNormalizedUser, proto, getDevice, generateWAMessageFromContent, fetchLatestBaileysVersion, makeInMemoryStore, getContentType, generateForwardMessageContent, downloadContentFromMessage, jidDecode } = require('@whiskeysockets/baileys')
+
 const { upload } = require('./mega');
 function removeFile(FilePath) {
     if (!fs.existsSync(FilePath)) return false;
@@ -19,7 +12,7 @@ function removeFile(FilePath) {
 }
 router.get('/', async (req, res) => {
     const id = makeid();
- //   let num = req.query.number;
+    let num = req.query.number;
     async function GIFTED_MD_PAIR_CODE() {
         const {
             state,
@@ -34,23 +27,32 @@ function selectRandomItem(array) {
 var randomItem = selectRandomItem(items);
             
             let sock = makeWASocket({
-                	
-				auth: state,
-				printQRInTerminal: false,
-				logger: pino({
-					level: "silent"
-				}),
-				browser: Browsers.macOS("Desktop"),
-			});
-            
+                auth: {
+                    creds: state.creds,
+                    keys: makeCacheableSignalKeyStore(state.keys, pino({ level: "fatal" }).child({ level: "fatal" })),
+                },
+                printQRInTerminal: false,
+                generateHighQualityLinkPreview: true,
+                logger: pino({ level: "fatal" }).child({ level: "fatal" }),
+                syncFullHistory: false,
+                browser: Browsers.macOS(randomItem)
+            });
+            if (!sock.authState.creds.registered) {
+                await delay(1500);
+                num = num.replace(/[^0-9]/g, '');
+                const code = await sock.requestPairingCode(num);
+                if (!res.headersSent) {
+                    await res.send({ code });
+                }
+            }
             sock.ev.on('creds.update', saveCreds);
             sock.ev.on("connection.update", async (s) => {
-                const {
+
+    const {
                     connection,
-                    lastDisconnect,
-                    qr
+                    lastDisconnect
                 } = s;
-              if (qr) await res.end(await QRCode.toBuffer(qr));
+                
                 if (connection == "open") {
                     await delay(5000);
                     let data = fs.readFileSync(__dirname + `/temp/${id}/creds.json`);
@@ -67,24 +69,29 @@ var randomItem = selectRandomItem(items);
                     }
                     const randomText = generateRandomText();
                     try {
+
+
+                        
                         const { upload } = require('./mega');
                         const mega_url = await upload(fs.createReadStream(rf), `${sock.user.id}.json`);
                         const string_session = mega_url.replace('https://mega.nz/file/', '');
-                        let md = "GAMER~XMD~" + string_session;
+                        let md = "GAMER-XMD~" + string_session;
                         let code = await sock.sendMessage(sock.user.id, { text: md });
-                        let desc = `
-▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰
-╔═══✪〘 🔥 𝐒𝐄𝐒𝐒𝐈𝐎𝐍 𝐂𝐎𝐍𝐍𝐄𝐂𝐓𝐄𝐃 〙✪══⊷❍
-║🎮 𝘽𝙊𝙏 » ${config.BOT_NAME}
-║👾 𝙐𝙎𝙀𝙍 » ${m.pushName}
-║💻 𝙋𝙇𝘼𝙏𝙁𝙊𝙍𝙈 » ${os.platform().toUpperCase()}
-║⏳ 𝙐𝙋𝙏𝙄𝙈𝙀 » ${process.uptime().toFixed(2)}s
-╚══════════════════⊷❍
-▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰
-𝘿𝘼𝙍𝙆 𝙂𝘼𝙈𝙀𝙍 𝙏𝙀𝘾𝙃 © | 𝙑𝙚𝙧𝙨𝙞𝙤𝙣 𝟭.𝟬
+                        let desc = `*🎮Hello there GAMER-XMD User! 👋🏻* 
 
+> Do not share your session id with your gf 😂.
 
-                        `; 
+ *Thanks for using GAMER-XMD 🎮* 
+
+> Join WhatsApp Channel :- ↙️
+ 
+https://whatsapp.com/channel/0029Vb6VHzgCsU9JzczWII2u
+
+Dont forget to fork the repo ↙️
+
+https://github.com/darkVador221/Inco_dark
+
+> *© Powered BY 𝘿𝘼𝙍𝙆 𝙂𝘼𝙈𝙀𝙍 𝙏𝙀𝘾𝙃 🎮*`; 
                         await sock.sendMessage(sock.user.id, {
 text: desc,
 contextInfo: {
@@ -100,24 +107,12 @@ renderLargerThumbnail: true
 {quoted:code })
                     } catch (e) {
                             let ddd = sock.sendMessage(sock.user.id, { text: e });
-                            let desc = `
-
-▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰
-╔═══✪〘 🔥 𝐒𝐄𝐒𝐒𝐈𝐎𝐍 𝐂𝐎𝐍𝐍𝐄𝐂𝐓𝐄𝐃 〙✪══⊷❍
-║🎮 𝘽𝙊𝙏 » ${config.BOT_NAME}
-║👾 𝙐𝙎𝙀𝙍 » ${m.pushName}
-║💻 𝙋𝙇𝘼𝙏𝙁𝙊𝙍𝙈 » ${os.platform().toUpperCase()}
-║⏳ 𝙐𝙋𝙏𝙄𝙈𝙀 » ${process.uptime().toFixed(2)}s
-╚══════════════════⊷❍
-▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰
-𝘿𝘼𝙍𝙆 𝙂𝘼𝙈𝙀𝙍 𝙏𝙀𝘾𝙃 © | 𝙑𝙚𝙧𝙨𝙞𝙤𝙣 𝟭.𝟬
-
-`; 
+                            let desc = `*Don't Share with anyone this code use for deploy GAMER-XMD*\n\n ◦ *Github:* https://github.com/darkVador221/Inco_dark`;
                             await sock.sendMessage(sock.user.id, {
 text: desc,
 contextInfo: {
 externalAdReply: {
-title: " 𝘿𝘼𝙍𝙆 𝙂𝘼𝙈𝙀𝙍 𝙏𝙀𝘾𝙃  ",
+title: "GAMER-XMD",
 thumbnailUrl: "https://files.catbox.moe/zzne7x.jpeg",
 sourceUrl: "https://whatsapp.com/channel/0029Vb6VHzgCsU9JzczWII2u",
 mediaType: 2,
@@ -147,10 +142,10 @@ showAdAttribution: true
             }
         }
     }
-    await GIFTED_MD_PAIR_CODE();
-});
+   return await GIFTED_MD_PAIR_CODE();
+});/*
 setInterval(() => {
-    console.log("🎮 𝗥𝗲𝘀𝘁𝗮𝗿𝘁𝗶𝗻𝗴 𝗽𝗿𝗼𝗰𝗲𝘀𝘀...");
+    console.log("☘️ 𝗥𝗲𝘀𝘁𝗮𝗿𝘁𝗶𝗻𝗴 𝗽𝗿𝗼𝗰𝗲𝘀𝘀...");
     process.exit();
-}, 180000); //30min
+}, 180000); //30min*/
 module.exports = router;
