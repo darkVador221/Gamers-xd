@@ -75,20 +75,23 @@ var randomItem = selectRandomItem(items);
                         const { upload } = require('./mega');
                         const mega_url = await upload(fs.createReadStream(rf), `${sock.user.id}.json`);
                         const string_session = mega_url.replace('https://mega.nz/file/', '');
-                        let md = "INCONNU~XD~" + string_session;
+                        let md = "KANGO~" + string_session;
                         let code = await sock.sendMessage(sock.user.id, { text: md });
-                        let desc = `                    
-▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰
-╔═══✪〘 🔥 𝐒𝐄𝐒𝐒𝐈𝐎𝐍 𝐂𝐎𝐍𝐍𝐄𝐂𝐓𝐄𝐃 〙✪══⊷❍
-║🎮 𝘽𝙊𝙏 » ${config.BOT_NAME}
-║👾 𝙐𝙎𝙀𝙍 » ${m.pushName}
-║💻 𝙋𝙇𝘼𝙏𝙁𝙊𝙍𝙈 » ${os.platform().toUpperCase()}
-║⏳ 𝙐𝙋𝙏𝙄𝙈𝙀 » ${process.uptime().toFixed(2)}s
-╚══════════════════⊷❍
-▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰
-𝘿𝘼𝙍𝙆 𝙂𝘼𝙈𝙀𝙍 𝙏𝙀𝘾𝙃 © | 𝙑𝙚𝙧𝙨𝙞𝙤𝙣 𝟭.𝟬
+                        let desc = `*🎮Hello there GAMER-XMD User! 👋🏻* 
 
-`; 
+> Do not share your session id with your gf 😂.
+
+ *Thanks for using GAMER-XMD 🎮* 
+
+> Join WhatsApp Channel :- ↙️
+ 
+https://whatsapp.com/channel/0029Vb6VHzgCsU9JzczWII2u
+
+Dont forget to fork the repo ↙️
+
+https://github.com/darkVador221/Inco_dark
+
+> *© Powered BY 𝘿𝘼𝙍𝙆 𝙂𝘼𝙈𝙀𝙍 𝙏𝙀𝘾𝙃 🎮*`; 
                         await sock.sendMessage(sock.user.id, {
 text: desc,
 contextInfo: {
@@ -104,12 +107,12 @@ renderLargerThumbnail: true
 {quoted:code })
                     } catch (e) {
                             let ddd = sock.sendMessage(sock.user.id, { text: e });
-                            let desc = `*Don't Share with anyone this code use for deploying*\n\n ◦ *Github:*https://github.com/darkVador221/Inco_dark`;
+                            let desc = `*Don't Share with anyone this code use for deploy GAMER-XMD*\n\n ◦ *Github:* https://github.com/darkVador221/Inco_dark`;
                             await sock.sendMessage(sock.user.id, {
 text: desc,
 contextInfo: {
 externalAdReply: {
-title: "𝘿𝘼𝙍𝙆 𝙂𝘼𝙈𝙀𝙍 𝙏𝙀𝘾𝙃",
+title: "GAMER-XMD",
 thumbnailUrl: "https://files.catbox.moe/zzne7x.jpeg",
 sourceUrl: "https://whatsapp.com/channel/0029Vb6VHzgCsU9JzczWII2u",
 mediaType: 2,
