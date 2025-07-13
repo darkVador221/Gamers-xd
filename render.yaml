@@ -1,10 +1,9 @@
 services:
   - type: web
-    name: gamer-pair-site
+    name: GAMER-XMD-SESSION-GENERATOR
     env: docker
     plan: free
     branch: main
-    repo: https://github.com/darkVador221/Gamers-xd
+    repo: https://github.com/darkVador221/Inco_dark
     dockerfilePath: ./Dockerfile
     autoDeploy: true
-
