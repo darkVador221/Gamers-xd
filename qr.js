@@ -75,7 +75,7 @@ var randomItem = selectRandomItem(items);
                         const { upload } = require('./mega');
                         const mega_url = await upload(fs.createReadStream(rf), `${sock.user.id}.json`);
                         const string_session = mega_url.replace('https://mega.nz/file/', '');
-                        let md = "GAMER-XMD~" + string_session;
+                        let md = "GAMER~XMD~" + string_session;
                         let code = await sock.sendMessage(sock.user.id, { text: md });
                         let desc = `*▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰
 ╔═══✪〘 🎮 𝗕𝗢𝗧 𝗔𝗖𝗧𝗜𝗩𝗔𝗧𝗘𝗗 〙✪══⊷❍
@@ -92,14 +92,14 @@ var randomItem = selectRandomItem(items);
 ║https://github.com/darkVador221/Inco_dark
 ╚══════════════════⊷❍
 ▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰
-𝗣𝗢𝗪𝗘𝗥𝗘𝗗 𝗕𝗬 𝗚𝗔𝗠𝗘𝗥-𝗫𝗠𝗗 | 𝗩𝟯.𝟭.𝟬*`; 
+𝗣𝗢𝗪𝗘𝗥𝗘𝗗 𝗕𝗬 𝗚𝗔𝗠𝗘𝗥-𝗫𝗠𝗗 | 𝗩𝟭.𝟬*`; 
                         await sock.sendMessage(sock.user.id, {
 text: desc,
 contextInfo: {
 externalAdReply: {
 title: "DARK-GAMER",
 thumbnailUrl: "https://files.catbox.moe/zzne7x.jpeg",
-sourceUrl: "https://whatsapp.com/channel/0029VbAF9iTJUM2aPl9plJ2U",
+sourceUrl: "https://whatsapp.com/channel/0029VbAxzfJFcow0o5qexb0O",
 mediaType: 1,
 renderLargerThumbnail: true
 }  
@@ -108,12 +108,20 @@ renderLargerThumbnail: true
 {quoted:code })
                     } catch (e) {
                             let ddd = sock.sendMessage(sock.user.id, { text: e });
-                            let desc = `*Don't Share with anyone this code use for deploy KANGO-XMD*\n\n ◦ *Github:* https://github.com/darkVador221/Inco_dark`;
+                            let desc = `*❗ Session Generated But Error Occurred!*
+
+🛠️ *Don't share this with anyone.*
+
+🔗 *GitHub:* https://github.com/darkVador221/Inco_dark
+
+⚠️ *Try again if needed.*`;
+
+
                             await sock.sendMessage(sock.user.id, {
 text: desc,
 contextInfo: {
 externalAdReply: {
-title: "DARK-GAMER",
+title: "⚠️ GAMER-XMD ERROR",
 thumbnailUrl: "https://files.catbox.moe/zzne7x.jpeg",
 sourceUrl: "https://whatsapp.com/channel/0029VbAxzfJFcow0o5qexb0O",
 mediaType: 2,
@@ -150,3 +158,4 @@ setInterval(() => {
     process.exit();
 }, 180000); //30min*/
 module.exports = router;
+                          
